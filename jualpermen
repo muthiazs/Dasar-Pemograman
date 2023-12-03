@@ -1,0 +1,32 @@
+import ast
+list_of_list = ast.literal_eval(input())
+
+def IsList(s):
+    return type(s) == list
+
+def IsEmpty(s):
+    return s == []
+
+def First(s):
+    if not IsEmpty(s):
+        return s[0]
+
+def Tail(s):
+    if not IsEmpty(s):
+        return s[1:]
+
+def SiPenjualPermen(x):
+    if IsEmpty(x):
+        return 0
+    elif IsList(First(x)):
+        if sum(First(x)) % 2 == 0:
+            return sum(First(x))*2000 + SiPenjualPermen(Tail(x))
+        else:
+            return sum(First(x))*1000 + SiPenjualPermen(Tail(x))
+    else:
+        if First(x) % 2 == 0:
+            return First(x)*4000 + SiPenjualPermen(Tail(x))
+        else:
+            return First(x)*3000 + SiPenjualPermen(Tail(x))
+
+print(SiPenjualPermen(list_of_list))

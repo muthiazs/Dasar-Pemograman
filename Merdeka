@@ -1,0 +1,24 @@
+import ast
+list_of_list = ast.literal_eval(input())
+
+def IsList(s):
+    return type(s) == list
+
+def IsEmpty(s):
+    return s == []
+
+def First(s):
+    if not IsEmpty(s):
+        return s[0]
+
+def Tail(s):
+    if not IsEmpty(s):
+        return s[1:]
+
+def IndonesiaMerdeka(x):
+    if IsEmpty(x):
+        return 0
+    else:
+        return max(First(x))*10000000 + IndonesiaMerdeka(Tail(x))
+
+print(IndonesiaMerdeka(list_of_list))
